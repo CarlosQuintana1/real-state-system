@@ -1,6 +1,6 @@
 # real-state-system
 
-#Propuesta 
+# Propuesta 
 
 **Desarrollo de una base de datos centralizada**
 
