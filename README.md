@@ -1,5 +1,7 @@
 # real-state-system
 
+Propuesta 
+
 **Desarrollo de una base de datos centralizada**
 
 Se plantea la creación de una base de datos que concentre toda la información relacionada con propiedades, usuarios e interacciones. Este sistema permitirá almacenar datos estructurados como ubicación, precio, características del inmueble, así como el historial de búsquedas de cada usuario. La base de datos será diseñada con un modelo relacional optimizado, que garantice consultas rápidas y seguras.
