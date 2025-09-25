@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: real_state_pg
+    restart: always
+    environment:
+      POSTGRES_USER: agent1
+      POSTGRES_PASSWORD: BestPass
+      POSTGRES_DB: real_state_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  api:
+    build: .
+    container_name: fastapi_app
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://agent1:BestPass@db:5432/real_state_db
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+volumes:
+  postgres_data: 

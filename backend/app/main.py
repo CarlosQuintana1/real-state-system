@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from models.user import User, Property, Company
+from models.user import User, UserCreate, Property, Company
 
 app = FastAPI()
 
@@ -7,9 +7,10 @@ app = FastAPI()
 async def root():
     return {"message" : "Welcome to Real State System"}
 
-@app.post("/users")
-async def create_user(user_data: User):
-    return user_data
+@app.post("/users", response_model=User)
+async def create_user(user_data: UserCreate):
+    user = User.model_validate(user_data.model_dump())
+    return user
 
 @app.post("/properties")
 async def create_real_state(property_data: Property):

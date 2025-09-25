@@ -1,12 +1,18 @@
 from pydantic import BaseModel, EmailStr
 from typing import Literal
 
-class User(BaseModel):
+class UserData(BaseModel):
 	name: str
 	email: EmailStr
 
+class UserCreate(UserData):
+	pass
+
+class User(UserData):
+	id: int | None = None
+
 class Property(BaseModel):
-	id: int
+	# id: int <- cambiar a un id dinamico aleatorio
 	price: float
 	address: str
 	model_type: str
