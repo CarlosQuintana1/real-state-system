@@ -1,0 +1,32 @@
+my_fastapi_project/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py                 # Punto de entrada de FastAPI
+│   ├── config.py               # Configuración de la app (DB, variables de entorno)
+│   ├── models/                 
+│   │   ├── __init__.py
+│   │   └── user.py             # Modelos Pydantic o SQLAlchemy
+│   ├── schemas/                
+│   │   ├── __init__.py
+│   │   └── user_schema.py      # Esquemas Pydantic para request/response
+│   ├── crud/                   
+│   │   ├── __init__.py
+│   │   └── user_crud.py        # Funciones para interactuar con la DB
+│   ├── api/                    
+│   │   ├── __init__.py
+│   │   └── user.py             # Rutas/endpoints
+│   ├── services/               
+│   │   └── auth_service.py     # Lógica de negocio extra (ej: autenticación)
+│   └── utils/                  
+│       └── helpers.py          # Funciones auxiliares
+│
+├── tests/                      
+│   ├── __init__.py
+│   └── test_user.py            # Tests unitarios y de integración
+│
+├── .env                        # Variables de entorno (DB, secretos)
+├── requirements.txt            # Dependencias de Python
+├── alembic/                     # Opcional, para migraciones de DB
+│   └── versions/
+└── README.md
