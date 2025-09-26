@@ -20,7 +20,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgres://agent1:BestPass@db:5432/real_state_db
+      DATABASE_URL: postgresql://agent1:BestPass@db:5432/real_state_db
     ports:
       - "8000:8000"
     volumes:

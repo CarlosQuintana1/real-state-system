@@ -1,28 +1,27 @@
 from pydantic import BaseModel, EmailStr
 from typing import Literal
 
-class UserData(BaseModel):
+class UserCreate(BaseModel):
 	name: str
 	email: EmailStr
 
-class UserCreate(UserData):
-	pass
-
-class User(UserData):
+class UserResponse(UserCreate):
 	id: int | None = None
 
-class Property(BaseModel):
-	# id: int <- cambiar a un id dinamico aleatorio
+class PropertyCreate(BaseModel):
 	price: float
 	address: str
 	model_type: str
 	status: Literal["available", "sold", "rented"]
+	
+class PropertyResponse(PropertyCreate):
+    id : int
 
 class Company(BaseModel):
 	id : int
 	name: str
-	agent : list[User]
-	properties : list[Property]
+	agent : list[UserResponse]
+	properties : list[PropertyResponse]
 	
 	@property
 	def total_properties(self) -> int:
