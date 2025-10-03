@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, String, Float, Enum
-from sqlalchemy.orm import declarative_base
-from app.config.db import Base
+#from sqlalchemy import Column, Integer, String, Float, Enum
+#from sqlalchemy.orm import declarative_base
+#from app.config.db import Base
 import enum
 
 class User(Base):

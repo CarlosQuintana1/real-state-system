@@ -1,20 +1,21 @@
 from pydantic import BaseModel, EmailStr
-from typing import Literal
+from typing import Literal, Optional
 
-class UserCreate(BaseModel):
+class UserSchema(BaseModel): #Cambiar a UserSchema
 	name: str
 	email: EmailStr
 
-class UserResponse(UserCreate):
+class UserResponse(UserSchema):
 	id: int | None = None
 
-class PropertyCreate(BaseModel):
+class PropertySchema(BaseModel):
+	name: str
 	price: float
 	address: str
 	model_type: str
 	status: Literal["available", "sold", "rented"]
 	
-class PropertyResponse(PropertyCreate):
+class PropertyResponse(PropertySchema):
     id : int
 
 class Company(BaseModel):
