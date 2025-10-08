@@ -3,18 +3,10 @@ from fastapi import FastAPI, HTTPException
 from typing import List
 from app.schemas.user_schema import UserSchema, PropertySchema, Company
 from app.models.user_connection import UserConnection
+from app.config.db import get_connection
 
 app = FastAPI()
 conn_user = UserConnection()
-
-def get_connection():
-    return psycopg2.connect(
-        dbname="real_state_db",
-        user="agent1",
-        password="BestPass",
-        host="localhost",
-        port="5432"
-    )
 
 @app.get("/")
 async def root():
