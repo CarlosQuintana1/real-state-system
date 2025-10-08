@@ -5,6 +5,6 @@ def get_connection():
         dbname="real_state_db",
         user="agent1",
         password="BestPass",
-        host="localhost",
+        host="db",
         port="5432"
     )
