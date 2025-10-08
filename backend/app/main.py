@@ -1,74 +1,19 @@
-import psycopg2
-from fastapi import FastAPI, HTTPException
-from typing import List
-from app.schemas.user_schema import UserSchema, PropertySchema, Company
-from app.models.user_connection import UserConnection
-from app.config.db import get_connection
+from fastapi import FastAPI
+from app.routers.user_router import router as user_router
 
-app = FastAPI()
-conn_user = UserConnection()
+app = FastAPI(
+    title="Real Estate API",
+    description="API for Real Estate System",
+    version="0.1.0"
+)
 
+app.include_router(user_router)
+
+"""
 @app.get("/")
 async def root():
     conn_user
     return {"message" : "Welcome to Real State System"}
-
-#user CRUD
-@app.post("/api/user/insert")
-async def create_user(user: UserSchema):
-    conn_user.write(user.model_dump())
-
-@app.get("/api/user/{id}", response_model=UserSchema)
-async def get_user(id: int):
-    try:
-        conn = get_connection()
-        cursor = conn.cursor()
-
-        cursor.execute("""
-            SELECT name, email 
-            FROM "user" 
-            WHERE id = %s
-        """, (id,))
-
-        row = cursor.fetchone()
-
-        cursor.close()
-        conn.close()
-
-        if row is None:
-            raise HTTPException(status_code=404, detail="User not found")
-
-        return UserSchema(
-            name = row[0],
-            email = row[1]
-        )
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.delete("/api/user/{id}")
-async def remove_user(id: int):
-    try:
-        conn = get_connection()
-        cursor = conn.cursor()
-
-        cursor.execute("""
-            DELETE FROM "user" WHERE id = %s RETURNING id;
-        """, (id,))
-
-        row = cursor.fetchone()
-
-        conn.commit()
-        cursor.close()
-        conn.close()       
-
-        if row is None:
-            raise HTTPException(status_code=404, detail=f"User {id} not found")
-        
-        return {"message": f"User {id} deleted successfully"}
-    
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
 
 #property CRUD
 @app.post("/api/properties/insert")
@@ -109,11 +54,11 @@ async def get_property(id: int):
         conn = get_connection()
         cursor = conn.cursor()
 
-        cursor.execute("""
+        cursor.execute(
             SELECT name, price, address, model_type, status
             FROM properties
             WHERE id = %s;
-        """, (id,))
+        , (id,))
 
         row = cursor.fetchone()
 
@@ -158,3 +103,5 @@ async def remove_property(id: int):
 @app.post("/api/companies/insert")
 async def create_company(company_data: Company):
     return company_data 
+        
+"""
