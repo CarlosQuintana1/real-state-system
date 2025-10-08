@@ -1,6 +1,5 @@
 from fastapi import APIRouter
 from app.crud.user_crud import get_user, create_user, update_user, delete_user
-
 from app.schemas.user_schema import UserSchema
 
 router = APIRouter(
