@@ -1,13 +1,13 @@
 import psycopg2
-from faker import Faker
 import random
+from faker import Faker
+from app.config.db import get_connection
 
 def seed():
+    conn = None
     fake = Faker()
-    try: 
-        conn = psycopg2.connect("dbname=real_state_db user=agent1 password=BestPass host=localhost port=5432")
-        cursor = conn.cursor()
-            
+    try:
+        conn = get_connection()
         properties = []
 
         for _ in range(10):
@@ -19,19 +19,22 @@ def seed():
                 random.choice(["available", "sold", "rented"])
             ))
 
-        cursor.executemany("""
-            INSERT INTO "properties"(name, price, address, model_type, status)
-            VALUES (%s, %s, %s, %s, %s)
-        """, properties)
+        with conn.cursor() as cur:
+            cur.executemany("""
+                INSERT INTO "properties"(name, price, address, model_type, status)
+                VALUES (%s, %s, %s, %s, %s)
+            """, properties)
 
         conn.commit()
-        cursor.close()
-        conn.close()
 
         print("10 propiedades creadas con exito")
 
     except psycopg2.OperationalError as err:
-        print(err)
+        print("Error: ", err)
+
+    finally:
+        if conn:
+            conn.close()
 
 if __name__ == '__main__':
     seed()
