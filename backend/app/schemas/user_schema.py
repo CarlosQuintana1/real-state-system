@@ -1,9 +1,10 @@
 from pydantic import BaseModel, EmailStr
 from typing import Literal, Optional
 
-class UserSchema(BaseModel): #Cambiar a UserSchema
+class UserSchema(BaseModel):
 	name: str
 	email: EmailStr
+	role: Literal["client", "seller"]
 
 class UserResponse(UserSchema):
 	id: int | None = None
@@ -14,6 +15,7 @@ class PropertySchema(BaseModel):
 	address: str
 	model_type: str
 	status: Literal["available", "sold", "rented"]
+	seller_id: Optional[int] = None
 	
 class PropertyResponse(PropertySchema):
     id : int

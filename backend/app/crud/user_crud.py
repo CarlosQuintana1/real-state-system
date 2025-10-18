@@ -9,7 +9,7 @@ def get_user(user_id: int) -> dict:
         conn = get_connection()
         with conn.cursor() as cur:
             cur.execute("""
-                SELECT id, name, email FROM "user" WHERE id = %s
+                SELECT id, name, email, role FROM "user" WHERE id = %s
             """, (user_id,))
             row = cur.fetchone()
             if not row:
@@ -17,7 +17,8 @@ def get_user(user_id: int) -> dict:
             return {
                 "id": row[0],
                 "name": row[1],
-                "email": row[2]
+                "email": row[2],
+                "role": row[3]
             }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -83,7 +84,7 @@ def delete_user(user_id: int):
                 raise HTTPException(status_code=404, detail=f"User {user_id} not found")
 
             conn.commit()
-        return {"message": "User deleted successfully"}
+        return {"message": f"User {user_id} deleted successfully"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     finally:
