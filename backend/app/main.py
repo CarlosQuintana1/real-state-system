@@ -1,15 +1,19 @@
 from fastapi import FastAPI
 from app.routers.user_router import router as user_router
 from app.routers.properties_router import router as properties_router
+from app.routers.companies_router import router as companies_router
+from app.routers.auth_router import router as auth_router
 
 app = FastAPI(
     title="Real Estate API",
     description="API for Real Estate System",
-    version="0.1.0"
+    version="0.8.0"
 )
 
+app.include_router(auth_router)
 app.include_router(user_router)
 app.include_router(properties_router)
+app.include_router(companies_router)
 
 """
 @app.get("/")
