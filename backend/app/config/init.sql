@@ -16,6 +16,7 @@ CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email CITEXT NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
     role user_role NOT NULL DEFAULT 'client'
 );
 
@@ -46,10 +47,10 @@ CREATE TABLE company_properties (
     PRIMARY KEY(company_id, property_id)
 );
 
-INSERT INTO "user" (name, email, role)
+INSERT INTO "user" (name, email, password, role)
 VALUES
-  ('Admin User', 'admin@example.com', 'seller'),
-  ('Client User', 'client@example.com', 'client');
+  ('Admin User', 'admin@example.com', 'admin123', 'seller'),
+  ('Client User', 'client@example.com', 'client123', 'client');
 
 INSERT INTO company (name)
 VALUES ('Century 21');
