@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.routers.user_router import router as user_router
 from app.routers.properties_router import router as properties_router
 from app.routers.companies_router import router as companies_router
@@ -8,6 +9,18 @@ app = FastAPI(
     title="Real Estate API",
     description="API for Real Estate System",
     version="0.8.0"
+)
+
+origins = [
+    "http://localhost:5173/" #agregar debajo la direccion de la nube
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(auth_router)
