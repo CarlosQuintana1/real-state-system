@@ -38,8 +38,8 @@ export default function Login() {
                     className=""
                 />
                 <div className="flex gap-2 w-50">
-                    <button type="submit" className="border-2">Iniciar Sesion</button>
-                    <button type="submit" className="bg-white text-black text-sm">Registrar</button>
+                    <button type="button" className="border-2 cursor-pointer">Iniciar Sesion</button>
+                    <button type="button" className="bg-white text-black text-sm cursor-pointer">Registrar</button>
                 </div>
             </form>
         </div>
