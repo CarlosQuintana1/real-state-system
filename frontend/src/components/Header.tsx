@@ -1,6 +1,6 @@
 export default function Header(){
     return (
-        <header className="w-full sticky top-0 z-50 flex bg-[#252525] text-white text-md justify-items-center p-1" draggable={false}>
+        <header className="w-full sticky top-0 z-50 flex bg-[#252525] text-white text-md justify-items-center p-2" draggable={false}>
             <div className="w-full grid grid-cols-3 items-center">
                 <div className="w-1/3 pl-4">
                     <img src="https://century21mexico.com/img/c21mx/c21MexWebRGold.svg" alt="Century 21 Logo" draggable={false}/>
@@ -12,9 +12,9 @@ export default function Header(){
                             <li><a href="#">Contact</a></li>
                         </ul>
                     </nav>
-                <div className="flex justify-end pr-4">
-                    <a href="#" className="text-white p-2">Iniciar Sesion</a>
-                    <a href="#" className="text-white p-2">Registrar</a>
+                <div className="flex justify-end pr-4 gap-4">
+                    <button type="button" className="border-2 p-2 text-sm rounded-md">Iniciar Sesion</button>
+                    <button type="button" className="bg-white text-black text-sm p-2 rounded-md">Registrarse</button>
                 </div>
             </div>
         </header>
