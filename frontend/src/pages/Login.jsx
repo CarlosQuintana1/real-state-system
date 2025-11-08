@@ -20,27 +20,27 @@ export default function Login() {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <h2>Login</h2>
+        <div className="">
+            <form onSubmit={handleSubmit} className="flex">
                 {error && <p>{error}</p>}
                 <input
                     type="email"
                     placeholder="Correo"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    className=""
                 />
                 <input
                     type="password"
                     placeholder="Contraseña"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className=""
                 />
-                <button
-                    type="submit"
-                >
-                    Iniciar Sesion
-                </button>
+                <div className="flex gap-2 w-50">
+                    <button type="submit" className="border-2">Iniciar Sesion</button>
+                    <button type="submit" className="bg-white text-black text-sm">Registrar</button>
+                </div>
             </form>
         </div>
     );
