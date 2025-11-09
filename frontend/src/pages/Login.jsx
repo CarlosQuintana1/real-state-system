@@ -1,20 +1,35 @@
-import {useState} from "react";
+import {useState, useEffect } from "react";
 import {login} from "../services/authService.js";
+import Cookies from "js-cookie";
+import {useNavigate} from "react-router-dom";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        const token = Cookies.get("access_token");
+        if (token) {
+            console.log("Sesión Iniciada, redireccionando a Home");
+            navigate("/");
+        }
+    }, [navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("Intentando iniciar sesion con: ", email, password);
         setError("");
 
         try {
             const data = await login(email, password);
-            localStorage.setItem("token", data.token);
+            console.log("Login exitoso: ", data);
+            navigate("/");
             alert("Login exitoso");
         } catch (err) {
+            console.error("Error de Login: ", err);
             setError(err.detail);
         }
     }
@@ -40,7 +55,7 @@ export default function Login() {
                         className="border-2 p-3"
                     />
                     <div className="flex flex-col gap-4">
-                        <button type="button" className="btn-primary text-[#252525] p-2 w-full rounded-md text-md font-semibold cursor-pointer">Iniciar Sesion</button>
+                        <button type="submit" className="btn-primary text-[#252525] p-2 w-full rounded-md text-md font-semibold cursor-pointer">Iniciar Sesion</button>
                         <a className="text-[#999999] font-light underline cursor-pointer">¿Olvidaste tú contraseña?</a>
                     </div>
                 </form>

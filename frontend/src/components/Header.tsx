@@ -1,7 +1,9 @@
 import {Link, useNavigate} from "react-router-dom";
+import {useAuth} from "../hooks/useAuth.js";
 
 export default function Header(){
     const navigate = useNavigate();
+    const {isAuthenticated, logout } = useAuth();
 
     const handleLoginClick = () => {
         navigate("/login");
@@ -26,8 +28,19 @@ export default function Header(){
                         </ul>
                     </nav>
                 <div className="flex justify-end pr-4 gap-4">
-                    <button onClick={handleLoginClick} type="button" className="hover:bg-white hover:text-black border-2 p-2 text-sm rounded-md cursor-pointer">Iniciar Sesion</button>
-                    <button onClick={handleSignupClick} type="button" className="bg-white text-black text-sm p-2 rounded-md cursor-pointer">Registrarse</button>
+                    {!isAuthenticated ? (
+                        <>
+                            <button onClick={handleLoginClick} type="button" className="hover:bg-white hover:text-black border-2 p-2 text-sm rounded-md cursor-pointer">
+                                Iniciar Sesion
+                            </button>
+                            <button onClick={handleSignupClick} type="button" className="bg-white text-black text-sm p-2 rounded-md cursor-pointer">
+                                Registrarse
+                            </button>
+                        </> ) : (
+                            <button onClick={logout} type="button" className="bg-red-500 text-white p-2 rounded-md cursor-pointer">
+                                Cerrar Sesión
+                            </button>
+                    )}
                 </div>
             </div>
         </header>
