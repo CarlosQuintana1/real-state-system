@@ -20,28 +20,35 @@ export default function Login() {
     }
 
     return (
-        <div className="">
-            <form onSubmit={handleSubmit} className="flex">
-                {error && <p>{error}</p>}
-                <input
-                    type="email"
-                    placeholder="Correo"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className=""
-                />
-                <input
-                    type="password"
-                    placeholder="Contraseña"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className=""
-                />
-                <div className="flex gap-2 w-50">
-                    <button type="button" className="border-2 cursor-pointer">Iniciar Sesion</button>
-                    <button type="button" className="bg-white text-black text-sm cursor-pointer">Registrar</button>
-                </div>
-            </form>
+        <div className="w-full h-screen grid grid-cols-2">
+            <div className="flex justify-center items-center">
+                <form onSubmit={handleSubmit} className="flex flex-col p-6 w-2/3 gap-5">
+                    {error && <p>{error}</p>}
+                    <label className="text-2xl font-bold">Iniciar Sesion</label>
+                    <input
+                        type="email"
+                        placeholder="Correo"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="border-2 p-3"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Contraseña"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="border-2 p-3"
+                    />
+                    <div className="flex flex-col gap-4">
+                        <button type="button" className="btn-primary text-[#252525] p-2 w-full rounded-md text-md font-semibold cursor-pointer">Iniciar Sesion</button>
+                        <a className="text-[#999999] font-light underline cursor-pointer">¿Olvidaste tú contraseña?</a>
+                    </div>
+                </form>
+            </div>
+            <div className="flex flex-col gap-6 justify-center items-center btn-primary">
+                <label className="text-2xl text-[#252525] font-extralight">¿Aún no tienes cuenta?</label>
+                <button type="button" className="bg-white text-black w-1/2 p-2 rounded-md text-md  font-semibold cursor-pointer">Registrarse</button>
+            </div>
         </div>
     );
 }

@@ -3,7 +3,7 @@ import Search from "../components/Search.tsx";
 export default function Home() {
     return (
         <>
-            <div className="h-[640px] bg-amber-50 -m-4">
+            <div className="h-[640px] bg-amber-50">
                 <Search/>
                 <div>
                     {/*Aqui va la imagen de fondo*/}
