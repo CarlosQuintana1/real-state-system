@@ -12,6 +12,7 @@ export default function Header(){
     const handleSignupClick = () => {
         navigate("/signup");
     }
+
     return (
         <header className="w-full sticky top-0 z-50 flex bg-[#252525] text-white text-md justify-items-center p-2" draggable={false}>
             <div className="w-full grid grid-cols-3 items-center">
@@ -24,6 +25,7 @@ export default function Header(){
                         <ul className="flex flex-row gap-6 items-center">
                             <li><Link to="/properties">Propiedades</Link></li>
                             <li><Link to="/services">Servicios</Link></li>
+                            <li><Link to="/seller">Vendedores</Link></li>
                             <li><Link to="/contact">Contacto</Link></li>
                         </ul>
                     </nav>

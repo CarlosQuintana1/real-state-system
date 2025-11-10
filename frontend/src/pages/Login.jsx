@@ -62,7 +62,13 @@ export default function Login() {
             </div>
             <div className="flex flex-col gap-6 justify-center items-center btn-primary">
                 <label className="text-2xl text-[#252525] font-extralight">¿Aún no tienes cuenta?</label>
-                <button type="button" className="bg-white text-black w-1/2 p-2 rounded-md text-md  font-semibold cursor-pointer">Registrarse</button>
+                <button
+                    type="button"
+                    onClick={() => navigate("/signup")}
+                    className="bg-white text-black w-1/2 p-2 rounded-md text-md  font-semibold cursor-pointer"
+                >
+                    Registrarse
+                </button>
             </div>
         </div>
     );
