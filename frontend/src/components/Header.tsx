@@ -28,7 +28,7 @@ export default function Header(){
                         </ul>
                     </nav>
                 <div className="flex justify-end pr-4 gap-4">
-                    {!isAuthenticated ? (
+                    { !isAuthenticated ? (
                         <>
                             <button onClick={handleLoginClick} type="button" className="hover:bg-white hover:text-black border-2 p-2 text-sm rounded-md cursor-pointer">
                                 Iniciar Sesion
@@ -37,7 +37,7 @@ export default function Header(){
                                 Registrarse
                             </button>
                         </> ) : (
-                            <button onClick={logout} type="button" className="bg-red-500 text-white p-2 rounded-md cursor-pointer">
+                            <button onClick={logout} type="button" className="bg-red-500 text-white text-sm p-2 rounded-md cursor-pointer">
                                 Cerrar Sesión
                             </button>
                     )}
