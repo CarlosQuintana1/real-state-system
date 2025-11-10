@@ -20,6 +20,7 @@ class PropertySchema(BaseModel):
     model_type: str
     status: Literal["available", "sold", "rented"]
     seller_id: Optional[int] = None
+    img_url: Optional[str] = None
 
 class PropertyResponse(PropertySchema):
     id : int
@@ -29,6 +30,7 @@ class Company(BaseModel):
     name: str
     agent : list[UserResponse] | None = None
     properties : list[PropertyResponse] | None = None
+    img_url : Optional[str] = None
 
     @property
     def total_properties(self) -> int:

@@ -8,8 +8,8 @@ router = APIRouter(
 )
 
 @router.get("/", response_model=list[PropertyResponse])
-async def read_properties():
-    return get_all_properties()
+async def read_properties(skip: int =0, limit: int = 10):
+    return get_all_properties(skip=skip, limit=limit)
 
 @router.post("/")
 async def write_property(property_data: PropertySchema):

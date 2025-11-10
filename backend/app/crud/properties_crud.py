@@ -21,15 +21,17 @@ def create_property(property_data: PropertySchema):
         if conn:
             conn.close()
 
-def get_all_properties():
+def get_all_properties(skip: int = 0, limit: int = 10):
     conn = None
     try:
         conn = get_connection()
         with conn.cursor() as cur:
             cur.execute("""
                 SELECT id, name, price, address, model_type, status, seller_id 
-                FROM properties;
-            """)
+                FROM properties
+                ORDER BY id
+                OFFSET %s LIMIT %s
+            """, (skip, limit))
             rows = cur.fetchall()
 
             if not rows:
