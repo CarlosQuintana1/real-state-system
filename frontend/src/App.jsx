@@ -13,7 +13,7 @@ export default function App() {
       <>
           <BrowserRouter>
               <Header/>
-                <main className="h-auto">
+                <main className="h-auto bg-transparent">
                   <Routes>
                       <Route path="/" element={<Home/>}/>
                       <Route path="/login" element={<Login/>}/>
