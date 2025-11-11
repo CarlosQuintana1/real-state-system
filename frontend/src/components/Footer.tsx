@@ -1,13 +1,13 @@
 export default function Footer() {
     return (
         <footer className="w-full">
-            <div className="grid grid-cols-2 gap-6 bg-[#252525] text-white">
+            <div className="grid grid-cols-1 text-center md:text-left md:grid-cols-2 gap-6 bg-[#252525] text-white">
                 <div className="justify-self-center flex items-center">
                     <div className="w-full">
                         <img src="https://century21mexico.com/img/c21mx/c21MexWebRGold.svg" width="200" height="200" alt="Century 21 Logo" draggable={false}/>
                     </div>
                 </div>
-                <div className="grid grid-cols-3 gap-6 m-6">
+                <div className="grid grid-cols-3 p-2 gap-2 m-6">
                     <div>
                         <h4>Empresa</h4>
                         <ul>

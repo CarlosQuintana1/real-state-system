@@ -142,7 +142,7 @@ export default function Properties() {
                         </div>
                     ))}
                 </div>
-            <div>
+            <div className="w-full flex justify-center gap-6 ">
                 <button onClick={() => setPage((p) => Math.max( p - 1, 1))}
                     disabled={page === 1}
                     className=""
