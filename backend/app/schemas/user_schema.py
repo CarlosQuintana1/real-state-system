@@ -15,6 +15,7 @@ class UserResponse(BaseModel):
 #Ready
 class PropertySchema(BaseModel):
     name: str
+    description: str
     price: float
     address: str
     model_type: str

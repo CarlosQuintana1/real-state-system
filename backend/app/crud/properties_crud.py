@@ -9,9 +9,9 @@ def create_property(property_data: PropertySchema):
         conn = get_connection()
         with conn.cursor() as cur:
             cur.execute("""
-                INSERT INTO "properties"(name, price, address, model_type, status)
-                VALUES(%(name)s, %(price)s, %(address)s, %(model_type)s, %(status)s)
-            """, (property_data))
+                INSERT INTO "properties"(name, description, price, address, model_type, status, seller_id, img_url)
+                VALUES(%(name)s, %(description)s, %(price)s, %(address)s, %(model_type)s, %(status)s, %(seller_id)s, %(img_url)s)
+            """, property_data.model_dump() )
             conn.commit()
 
             return {"message": "Property created successfully"}
@@ -27,7 +27,7 @@ def get_all_properties(skip: int = 0, limit: int = 10):
         conn = get_connection()
         with conn.cursor() as cur:
             cur.execute("""
-                SELECT id, name, price, address, model_type, status, seller_id 
+                SELECT id, name, description, price, address, model_type, status, seller_id, img_url
                 FROM properties
                 ORDER BY id
                 OFFSET %s LIMIT %s
@@ -41,11 +41,13 @@ def get_all_properties(skip: int = 0, limit: int = 10):
                 PropertyResponse(
                     id = row[0],
                     name = row[1],
-                    price = float(row[2]),
-                    address = row[3],
-                    model_type= row[4],
-                    status = row[5],
-                    seller_id = row[6]
+                    description = row[2],
+                    price = float(row[3]),
+                    address = row[4],
+                    model_type= row[5],
+                    status = row[6],
+                    seller_id = row[7],
+                    img_url = row[8]
                 )
                 for row in rows
             ]
@@ -63,7 +65,7 @@ def get_property(property_id: int) -> dict:
         conn = get_connection()
         with conn.cursor() as cur:
             cur.execute("""
-                SELECT id, name, price, address, model_type, status
+                SELECT id, name, description ,price, address, model_type, status, seller_id, img_url
                 FROM properties
                 WHERE id = %s
             """, (property_id,))
@@ -73,10 +75,13 @@ def get_property(property_id: int) -> dict:
             return {
                 "id": row[0],
                 "name": row[1],
-                "price": float(row[2]),
-                "address": row[3],
-                "model_type": row[4],
-                "status": row[5]
+                "description": row[2],
+                "price": float(row[3]),
+                "address": row[4],
+                "model_type": row[5],
+                "status": row[6],
+                "seller_id": row[7],
+                "img_url": row[8]
             }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -92,20 +97,24 @@ def update_property(property_id: int, property_data: PropertySchema) -> Property
             cur.execute("""
                 UPDATE "properties"
                 SET name = %s,
+                    description = %s,
                     price = %s,
                     address = %s,
                     model_type = %s,
                     status = %s,
-                    seller_id = %s
+                    seller_id = %s,
+                    img_url = %s
                 WHERE id = %s
-                RETURNING id, name, price, address, model_type, status, seller_id;
+                RETURNING id, name, description, price, address, model_type, status, seller_id, img_url;
             """, (
-                property_data.name, 
+                property_data.name,
+                property_data.description,
                 property_data.price, 
                 property_data.address, 
                 property_data.model_type, 
                 property_data.status, 
                 property_data.seller_id,
+                property_data.img_url,
                 property_id
             ))
             
@@ -114,15 +123,17 @@ def update_property(property_id: int, property_data: PropertySchema) -> Property
                 raise HTTPException(status_code=404, detail=f"Property {property_id} not found")
             conn.commit()
 
-            return {
-                "id": row[0],
-                "name": row[1],
-                "price": float(row[2]),
-                "address": row[3],
-                "model_type": row[4],
-                "status": row[5],
-                "seller_id": row[6]
-            }
+            return PropertyResponse(
+                id=row[0],
+                name=row[1],
+                description=row[2],
+                price=float(row[3]),
+                address=row[4],
+                model_type=row[5],
+                status=row[6],
+                seller_id=row[7],
+                img_url=row[8]
+            )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     finally:

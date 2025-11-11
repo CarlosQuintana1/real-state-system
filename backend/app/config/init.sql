@@ -23,11 +23,13 @@ CREATE TABLE "user" (
 CREATE TABLE properties (
     id SERIAL PRIMARY KEY,
     name VARCHAR(60) NOT NULL,
+    description VARCHAR(200) NOT NULL,
     price NUMERIC(15,2) NOT NULL,
     address VARCHAR(200) NOT NULL,
     model_type VARCHAR(30) NOT NULL,
     status property_status NOT NULL DEFAULT 'available',
-    seller_id INT REFERENCES "user"(id) ON DELETE SET NULL
+    seller_id INT REFERENCES "user"(id) ON DELETE SET NULL,
+    img_url TEXT
 );
 
 CREATE TABLE company (
@@ -51,14 +53,3 @@ INSERT INTO "user" (name, email, password, role)
 VALUES
   ('Admin User', 'admin@example.com', 'admin123', 'seller'),
   ('Client User', 'client@example.com', 'client123', 'client');
-
-INSERT INTO company (name)
-VALUES ('Century 21');
-
-INSERT INTO properties (name, price, address, model_type, seller_id)
-VALUES
-  ('Casa Bonita', 2500000.00, 'Av. Reforma 123, CDMX', 'Residencial', 1),
-  ('Departamento Centro', 1800000.00, 'Calle Juárez 45, CDMX', 'Condominio', 1);
-
-INSERT INTO company_agents (company_id, user_id) VALUES (1, 1);
-INSERT INTO company_properties (company_id, property_id) VALUES (1, 1), (1, 2);

@@ -24,5 +24,8 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
+    environment:
+      - RUN_SEED=true
+    command: ["/bin/sh", "-c", "./entrypoint.sh"]
 volumes:
-  postgres_data: 
+  postgres_data:
