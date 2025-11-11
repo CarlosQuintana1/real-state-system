@@ -35,7 +35,7 @@ export default function Login() {
     }
 
     return (
-        <div className="w-full h-screen grid grid-cols-2">
+        <div className="w-full h-screen md:grid md:grid-cols-2">
             <div className="flex justify-center items-center">
                 <form onSubmit={handleSubmit} className="flex flex-col p-6 w-2/3 gap-5">
                     {error && <p>{error}</p>}

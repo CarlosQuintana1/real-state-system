@@ -27,7 +27,7 @@ export default function Signup() {
     }
 
     return (
-        <div className="w-full h-screen grid grid-cols-2">
+        <div className="w-full h-screen md:grid md:grid-cols-2">
             <div className="flex flex-col gap-6 justify-center items-center btn-primary">
                 <label className="text-2xl text-[#252525] font-extralight">¿Ya tienes cuenta?</label>
                 <button
