@@ -125,7 +125,7 @@ export default function Properties() {
                         >
                             <div className="relative h-56 overflow-hidden">
                                 <img
-                                    src={property.image}
+                                    src={property.img_url}
                                     alt={property.name}
                                     className="w-full h-full object-cover"
                                 />
