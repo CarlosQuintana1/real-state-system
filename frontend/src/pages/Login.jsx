@@ -2,6 +2,8 @@ import {useState, useEffect } from "react";
 import {login} from "../services/authService.js";
 import Cookies from "js-cookie";
 import {useNavigate} from "react-router-dom";
+import {useSuccessModal} from "../hooks/useSucessModal.jsx";
+import SuccessModal from "../components/sucessModal.jsx";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -9,25 +11,29 @@ export default function Login() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
+    const {modalInfo, showSuccess, closeModal} = useSuccessModal();
+
 
     useEffect(() => {
         const token = Cookies.get("access_token");
         if (token) {
-            console.log("Sesión Iniciada, redireccionando a Home");
             navigate("/");
         }
     }, [navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Intentando iniciar sesion con: ", email, password);
         setError("");
 
         try {
-            const data = await login(email, password);
-            console.log("Login exitoso: ", data);
-            navigate("/");
-            alert("Login exitoso");
+            await login(email, password);
+
+            showSuccess(
+                "Inicio de Sesión",
+                "Has iniciado sesión exitosamente"
+            );
+
+            setTimeout(() => navigate("/"), 2500);
         } catch (err) {
             console.error("Error de Login: ", err);
             setError(err.detail);
@@ -70,6 +76,13 @@ export default function Login() {
                     Registrarse
                 </button>
             </div>
+
+            <SuccessModal
+                isOpen={modalInfo.isOpen}
+                title={modalInfo.title}
+                message={modalInfo.message}
+                onClose={closeModal}
+            />
         </div>
     );
 }

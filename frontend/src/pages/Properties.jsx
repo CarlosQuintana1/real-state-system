@@ -5,14 +5,50 @@ export default function Properties() {
     const [properties, setProperties] = useState([]);
     const [loading,setLoading] = useState(true);
     const [error, setError] = useState("");
+
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const limit = 10;
 
+    // Filtros reales
+    const [filters, setFilters] = useState({
+        type_f: "",
+        min_price: "",
+        max_price: "",
+        location: ""
+    });
+
+    // Filtros temporales (mientras el usuario escribe)
+    const [draftFilters, setDraftFilters] = useState({
+        type_f: "",
+        min_price: "",
+        max_price: "",
+        location: ""
+    });
+
+    // Manejar cambios en inputs
+    const handleDraftChange = (e) => {
+        setDraftFilters({
+            ...draftFilters,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    // Aplicar los filtros SOLO cuando presionan el botón
+    const applyFilters = () => {
+        setFilters(draftFilters);
+        setPage(1);
+    };
+
+
     const fetchProperties = useCallback(async () => {
         setLoading(true);
             try {
-                const data = await getAllProperties(page, limit);
+                const data = await getAllProperties({
+                    page,
+                    limit,
+                    ...filters
+                });
                 setProperties(data);
                 setHasMore(data.length === limit);
             } catch (err) {
@@ -20,10 +56,10 @@ export default function Properties() {
             } finally {
                 setLoading(false);
             }
-    }, [page, limit]);
+    }, [page, filters]);
 
     useEffect(() => {
-        fetchProperties().then();
+        fetchProperties();
     }, [fetchProperties]);
 
     if (loading) return <p>Cargando Propiedades...</p>
@@ -52,14 +88,14 @@ export default function Properties() {
                               Tipo de Propiedad
                           </label>
                           <select
-                              name="type"
-                              value=""
-                              onChange=""
+                              name="type_f"
+                              value={draftFilters.type_f}
+                              onChange={handleDraftChange}
                               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
                           >
                               <option value="">Todos</option>
-                              <option value="Casa">Casa</option>
-                              <option value="Departamento">Departamento</option>
+                              <option value="house">Casa</option>
+                              <option value="department">Departamento</option>
                           </select>
                       </div>
                       {/* Filtro precio mínimo */}
@@ -69,10 +105,10 @@ export default function Properties() {
                           </label>
                           <input
                               type="number"
-                              name="minPrice"
-                              value=""
-                              onChange=""
-                              placeholder="$ 0"
+                              name="min_price"
+                              value={draftFilters.min_price}
+                              onChange={handleDraftChange}
+                              placeholder="Ej: 0"
                               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
                           />
                       </div>
@@ -84,10 +120,10 @@ export default function Properties() {
                           </label>
                           <input
                               type="number"
-                              name="maxPrice"
-                              value=""
-                              onChange=""
-                              placeholder="$ 10,000,000"
+                              name="max_price"
+                              value={draftFilters.max_price}
+                              onChange={handleDraftChange}
+                              placeholder="Ej: 10,000,000"
                               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
                           />
                       </div>
@@ -100,9 +136,9 @@ export default function Properties() {
                           <input
                               type="text"
                               name="location"
-                              value=""
-                              onChange=""
-                              placeholder="Ej. Polanco, CDMX"
+                              value={draftFilters.location}
+                              onChange={handleDraftChange}
+                              placeholder="Ej: Polanco, CDMX"
                               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
                           />
                       </div>
@@ -110,7 +146,7 @@ export default function Properties() {
                   {/* Botón filtrar */}
                   <div className="mt-6 flex justify-end">
                       <button
-                          onClick=""
+                          onClick={applyFilters}
                           className="bg-[#D4AF37] hover:bg-[#B8941F] text-white font-bold py-3 px-8 rounded-md transition-colors duration-300 shadow-md"
                       >
                           Filtrar Propiedades
@@ -142,17 +178,26 @@ export default function Properties() {
                         </div>
                     ))}
                 </div>
-            <div className="w-full flex justify-center gap-6 ">
+            <div className="w-full flex justify-center gap-6  items-center">
                 <button onClick={() => setPage((p) => Math.max( p - 1, 1))}
                     disabled={page === 1}
-                    className=""
+                        className={`text-sm p-2 rounded-md transition-all duration-200
+                            ${hasMore
+                                ? "border-1 text-gray-400 cursor-not-allowed"
+                                : "bg-black text-white hover:bg-gray-700 cursor-pointer"
+                        }`}
+
                 >
                     Anterior
                 </button>
-                <span className="">Página {page}</span>
+                <span className="underline">Página {page}</span>
                 <button onClick={() => setPage((p) => (hasMore ? p + 1 : p))}
                     disabled={!hasMore}
-                    className=""
+                    className={`text-sm p-2 rounded-md transition-all duration-200
+                        ${hasMore 
+                            ? "bg-black text-white  hover:bg-gray-700 cursor-pointer"
+                            : "border-1 text-gray-400 cursor-not-allowed"    
+                    }`}
                 >
                     Siguiente
                 </button>

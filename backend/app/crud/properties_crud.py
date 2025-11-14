@@ -1,4 +1,5 @@
 from fastapi import HTTPException
+
 from app.config.db import get_connection
 from app.schemas.user_schema import PropertySchema, PropertyResponse
 
@@ -21,17 +22,50 @@ def create_property(property_data: PropertySchema):
         if conn:
             conn.close()
 
-def get_all_properties(skip: int = 0, limit: int = 10):
+def get_all_properties(
+    skip: int = 0,
+    limit: int = 10,
+    type_f: str | None = None,
+    min_price: float | None = None,
+    max_price: float | None = None,
+    location: str | None = None,
+):
     conn = None
     try:
         conn = get_connection()
         with conn.cursor() as cur:
-            cur.execute("""
-                SELECT id, name, description, price, address, model_type, status, seller_id, img_url
+            query = """
+                SELECT id, name, description ,price, address, model_type, status, seller_id, img_url
                 FROM properties
-                ORDER BY id
-                OFFSET %s LIMIT %s
-            """, (skip, limit))
+            """
+
+            filters = []
+            params = []
+
+
+            if type_f:
+                filters.append("model_type = %s")
+                params.append(type_f)
+
+            if min_price:
+                filters.append("price >= %s")
+                params.append(min_price)
+
+            if max_price:
+                filters.append("price <= %s")
+                params.append(max_price)
+
+            if location:
+                filters.append("address LIKE %s")
+                params.append(f"%{location}%")
+
+            if filters:
+                query += " WHERE " + " AND ".join(filters)
+
+            query += " ORDER BY id DESC LIMIT %s OFFSET %s"
+            params.extend([limit, skip])
+
+            cur.execute(query, params)
             rows = cur.fetchall()
 
             if not rows:

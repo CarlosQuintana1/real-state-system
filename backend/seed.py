@@ -125,6 +125,106 @@ if __name__ == '__main__':
             "status": "sold",
             "address": "Valle de Bravo, Estado de México",
             "img_url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&h=350&fit=crop"
+        },
+        {
+            "id": 10,
+            "name": "Departamento Minimalista con Vista Panorámica",
+            "description": "Moderno departamento de 2 recámaras en piso alto, con balcón y vista a la ciudad.",
+            "price": 2800000,
+            "model_type": "department",
+            "status": "available",
+            "address": "Santa Fe, CDMX",
+            "img_url": "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=500&h=350&fit=crop"
+        },
+        {
+            "id": 11,
+            "name": "Casa Familiar con Alberca",
+            "description": "Amplia casa de 4 recámaras con jardín, área social y alberca privada.",
+            "price": 5200000,
+            "model_type": "house",
+            "status": "sold",
+            "address": "Zapopan, Jalisco",
+            "img_url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&h=350&fit=crop"
+        },
+        {
+            "id": 12,
+            "name": "Loft Industrial en Zona Creativa",
+            "description": "Loft de concepto abierto con acabados industriales y excelente iluminación.",
+            "price": 1950000,
+            "model_type": "department",
+            "status": "available",
+            "address": "La Roma, CDMX",
+            "img_url": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=500&h=350&fit=crop"
+        },
+        {
+            "id": 13,
+            "name": "Penthouse de Lujo con Terraza Privada",
+            "description": "Penthouse de 3 recámaras con terraza panorámica y acabados premium.",
+            "price": 7800000,
+            "model_type": "department",
+            "status": "available",
+            "address": "San Pedro Garza García, Nuevo León",
+            "img_url": "https://images.unsplash.com/photo-1599423300746-b62533397364?w=500&h=350&fit=crop"
+        },
+        {
+            "id": 14,
+            "name": "Casa Rústica en Zona Campestre",
+            "description": "Casa rústica de madera y piedra, ideal para descanso en zona tranquila.",
+            "price": 2400000,
+            "model_type": "house",
+            "status": "available",
+            "address": "Valle de Bravo, Estado de México",
+            "img_url": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=500&h=350&fit=crop"
+        },
+        {
+            "id": 15,
+            "name": "Departamento Remodelado en Edificio Histórico",
+            "description": "Departamento de 1 recámara con acabados modernos dentro de un edificio restaurado.",
+            "price": 1650000,
+            "model_type": "department",
+            "status": "available",
+            "address": "Centro Histórico, Puebla",
+            "img_url": "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=500&h=350&fit=crop"
+        },
+        {
+            "id": 16,
+            "name": "Estudio Compacto para Ejecutivos",
+            "description": "Estudio moderno y funcional, ideal para ejecutivos o estudiantes.",
+            "price": 1100000,
+            "model_type": "department",
+            "status": "available",
+            "address": "Guadalajara, Jalisco",
+            "img_url": "https://images.unsplash.com/photo-1586105251261-72a756497a12?w=500&h=350&fit=crop"
+        },
+        {
+            "id": 17,
+            "name": "Casa de Lujo con Jardín Zen",
+            "description": "Residencia premium con 3 recámaras, sala de cine y jardín zen.",
+            "price": 6400000,
+            "model_type": "house",
+            "status": "available",
+            "address": "Querétaro, Querétaro",
+            "img_url": "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=500&h=350&fit=crop"
+        },
+        {
+            "id": 18,
+            "name": "Cabaña Moderna en la Montaña",
+            "description": "Cabaña contemporánea con chimenea, terraza y vista al bosque.",
+            "price": 2100000,
+            "model_type": "house",
+            "status": "sold",
+            "address": "San Cristóbal de las Casas, Chiapas",
+            "img_url": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&h=350&fit=crop"
+        },
+        {
+            "id": 19,
+            "name": "Residencia Ejecutiva con Oficina Integrada",
+            "description": "Casa moderna con espacio de oficina, 2 niveles y patio trasero.",
+            "price": 3600000,
+            "model_type": "house",
+            "status": "available",
+            "address": "Mérida, Yucatán",
+            "img_url": "https://images.unsplash.com/photo-1599423300743-3b04a39af1d6?w=500&h=350&fit=crop"
         }
     ]
     seed(properties)

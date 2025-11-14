@@ -1,6 +1,8 @@
 import {useState } from "react";
 import {useNavigate} from "react-router-dom";
 import {registerUser} from "../api/auth_signup.js";
+import {useSuccessModal} from "../hooks/useSucessModal.jsx";
+import SuccessModal from "../components/sucessModal.jsx";
 
 export default function Signup() {
     const [name, setName] = useState("");
@@ -10,16 +12,21 @@ export default function Signup() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
+    const {modalInfo, showSuccess, closeModal} = useSuccessModal();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Intentando registrar con: ", name, email, role);
         setError("");
 
         try {
-            const data = await registerUser({name, email, password, role});
-            console.log("Registro exitoso: ", data);
-            alert("Registro exitoso");
-            navigate("/login");
+            await registerUser({name, email, password, role});
+
+            showSuccess(
+                "Registro Exitoso",
+                "Has registrado exitosamento ... redirreccionando a Iniciar Sesión"
+            );
+
+            setTimeout(() => navigate("/login"), 2500);
         } catch (err) {
             console.error("Error de Registro: ", err);
             setError(err.detail);
@@ -78,6 +85,12 @@ export default function Signup() {
                     </div>
                 </form>
             </div>
+            <SuccessModal
+                isOpen={modalInfo.isOpen}
+                title={modalInfo.title}
+                message={modalInfo.message}
+                onClose={closeModal}
+            />
         </div>
     );
 }

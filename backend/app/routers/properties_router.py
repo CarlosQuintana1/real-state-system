@@ -8,8 +8,23 @@ router = APIRouter(
 )
 
 @router.get("/", response_model=list[PropertyResponse])
-async def read_properties(skip: int =0, limit: int = 10):
-    return get_all_properties(skip=skip, limit=limit)
+async def read_properties(
+    page: int = 1,
+    limit: int = 10,
+    type_f: str | None = None,
+    min_price: float | None = None,
+    max_price: float | None = None,
+    location: str | None = None
+):
+    skip = (page - 1 ) * limit
+    return get_all_properties(
+        skip=skip,
+        limit=limit,
+        type_f=type_f,
+        min_price=min_price,
+        max_price=max_price,
+        location=location
+    )
 
 @router.post("/")
 async def write_property(property_data: PropertySchema):

@@ -124,7 +124,6 @@ export default function Home() {
                         <h2 className="text-2xl font-bold text-[#38383a] text-center">
                             Encuentra tu propiedad ideal
                         </h2>
-
                         {/* Formulario de búsqueda */}
                         <form onSubmit={handleSearch} className="w-full">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -164,8 +163,6 @@ export default function Home() {
                                         </option>
                                         <option value="Casa">Casa</option>
                                         <option value="Departamento">Departamento</option>
-                                        <option value="Terreno">Terreno</option>
-                                        <option value="Oficina">Oficina</option>
                                     </select>
                                 </div>
 
