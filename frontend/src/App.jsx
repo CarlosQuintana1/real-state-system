@@ -7,6 +7,7 @@ import Services from "./pages/Services.jsx";
 import Contact from "./pages/Contact.jsx";
 import Home from "./pages/Home.jsx";
 import Footer from "./components/Footer.tsx";
+import Sellers from "./pages/Sellers.jsx";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
                       <Route path="/signup" element={<Signup/>}/>
                       <Route path="/properties" element={<Properties/>}/>
                       <Route path="/services" element={<Services/>}/>
+                      <Route path="/seller" element={<Sellers/>}/>
                       <Route path="/contact" element={<Contact/>}/>
                   </Routes>
                 </main>

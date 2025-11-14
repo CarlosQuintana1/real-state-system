@@ -53,3 +53,42 @@ INSERT INTO "user" (name, email, password, role)
 VALUES
   ('Admin User', 'admin@example.com', 'admin123', 'seller'),
   ('Client User', 'client@example.com', 'client123', 'client');
+
+INSERT INTO company (name)
+VALUES
+    ('Century21'),
+    ('HollydayU'),
+    ('CasasG');
+
+INSERT INTO "user" (name, email, password, role)
+VALUES
+    ('Seller 1', 'seller1@example.com', 'pass1', 'seller'),
+    ('Seller 2', 'seller2@example.com', 'pass2', 'seller'),
+    ('Seller 3', 'seller3@example.com', 'pass3', 'seller'),
+    ('Seller 4', 'seller4@example.com', 'pass4', 'seller'),
+    ('Seller 5', 'seller5@example.com', 'pass5', 'seller'),
+    ('Seller 6', 'seller6@example.com', 'pass6', 'seller'),
+    ('Seller 7', 'seller7@example.com', 'pass7', 'seller'),
+    ('Seller 8', 'seller8@example.com', 'pass8', 'seller'),
+    ('Seller 9', 'seller9@example.com', 'pass9', 'seller');
+
+-- Century21 (sellers 1, 2, 3)
+INSERT INTO company_agents (company_id, user_id)
+VALUES
+    (1, 1),
+    (1, 2),
+    (1, 3);
+
+-- HollydayU (sellers 4, 5, 6)
+INSERT INTO company_agents (company_id, user_id)
+VALUES
+    (2, 4),
+    (2, 5),
+    (2, 6);
+
+-- CasasG (sellers 7, 8, 9)
+INSERT INTO company_agents (company_id, user_id)
+VALUES
+    (3, 7),
+    (3, 8),
+    (3, 9);

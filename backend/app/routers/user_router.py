@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from app.core.dependencies import get_current_user
-from app.crud.user_crud import get_user, create_user, update_user, delete_user
+from app.crud.user_crud import get_users, get_user, create_user, update_user, delete_user
 from app.schemas.user_schema import UserSchema, UserResponse
 
 router = APIRouter(
@@ -23,3 +23,8 @@ async def update_user_data(user_id: int, user: UserSchema):
 @router.delete("/{user_id}")
 async def remove_user(user_id: int):
     return delete_user(user_id)
+
+#Para seller
+@router.get("/", response_model=list[UserResponse])
+async def list_users(role: str | None = None):
+    return get_users(role)
