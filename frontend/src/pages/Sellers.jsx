@@ -43,6 +43,9 @@ export default function Sellers() {
             <h1 className="text-3xl font-semibold mb-6 text-gray-800">
                 Lista de Vendedores
             </h1>
+            <p className="text-xl text-gray-500 mb-2">
+                Elige a tu vendedor favorito que te acompañara en esta Nueva Experiencia
+            </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {sellers.map((seller) => (
@@ -57,8 +60,8 @@ export default function Sellers() {
                         <p className="text-gray-600 mb-4">{seller.email}</p>
 
                         <div className="mt-4 flex justify-end">
-                            <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg">
-                                Ver detalles
+                            <button className="px-4 py-2 bg-[#beaf87] text-black text-sm rounded-lg">
+                                Contactar
                             </button>
                         </div>
                     </div>

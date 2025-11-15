@@ -1,5 +1,7 @@
 import {useState, useEffect, useCallback} from "react";
 import {getAllProperties} from "../services/propertyService.js";
+import {mapPropertyStatus} from "../utils/statusMapper.js";
+import {getStatusColor} from "../utils/statusColor.js";
 
 export default function Properties() {
     const [properties, setProperties] = useState([]);
@@ -79,7 +81,7 @@ export default function Properties() {
           </div>
           {/* Panel de filtros */}
           <div className="container mx-auto px-4 py-8">
-              <div className="bg-white rounded-lg shadow-lg p-6 mb-8 border-t-4 border-[#D4AF37]">
+              <div className="bg-white rounded-lg shadow-lg p-6 mb-8 border-t-4 border-[#beaf87]">
                   <h2 className="text-2xl font-bold text-[#252525] mb-6">Filtrar Propiedades</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                       {/* Filtro por tipo */}
@@ -91,7 +93,7 @@ export default function Properties() {
                               name="type_f"
                               value={draftFilters.type_f}
                               onChange={handleDraftChange}
-                              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
+                              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#beaf87] focus:border-transparent"
                           >
                               <option value="">Todos</option>
                               <option value="house">Casa</option>
@@ -109,7 +111,7 @@ export default function Properties() {
                               value={draftFilters.min_price}
                               onChange={handleDraftChange}
                               placeholder="Ej: 0"
-                              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
+                              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#beaf87] focus:border-transparent"
                           />
                       </div>
 
@@ -124,7 +126,7 @@ export default function Properties() {
                               value={draftFilters.max_price}
                               onChange={handleDraftChange}
                               placeholder="Ej: 10,000,000"
-                              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
+                              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#beaf87] focus:border-transparent"
                           />
                       </div>
 
@@ -139,7 +141,7 @@ export default function Properties() {
                               value={draftFilters.location}
                               onChange={handleDraftChange}
                               placeholder="Ej: Polanco, CDMX"
-                              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
+                              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#beaf87] focus:border-transparent"
                           />
                       </div>
                   </div>
@@ -147,13 +149,13 @@ export default function Properties() {
                   <div className="mt-6 flex justify-end">
                       <button
                           onClick={applyFilters}
-                          className="bg-[#D4AF37] hover:bg-[#B8941F] text-white font-bold py-3 px-8 rounded-md transition-colors duration-300 shadow-md"
+                          className="bg-[#beaf87] hover:bg-[#B8941F] text-white font-bold py-3 px-8 rounded-md transition-colors duration-300 shadow-md"
                       >
                           Filtrar Propiedades
                       </button>
                   </div>
               </div>
-              <div className="grid grid-cols-2 gap-6 p-4">
+              <div className="grid grid-cols-3 gap-6 p-4">
                     {properties.map((property) => (
                         <div
                             key={property.id}
@@ -165,7 +167,7 @@ export default function Properties() {
                                     alt={property.name}
                                     className="w-full h-full object-cover"
                                 />
-                                <div className="absolute top-4 right-4 bg-[#D4AF37] text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                <div className="absolute top-4 right-4 bg-[#beaf87] text-white px-3 py-1 rounded-full text-sm font-semibold">
                                     {property.model_type}
                                 </div>
                             </div>
@@ -173,7 +175,9 @@ export default function Properties() {
                                 <h3 className="text-xl font-bold text-[#252525] mb-2 line-clamp-1">{property.name}</h3>
                                 <p>${property.price.toLocaleString("es-MX")}</p>
                                 <p>{property.address}</p>
-                                <p>{property.status}</p>
+                                <p className={`px-2 py-1 rounded-full font-extralight w-24 text-center ${getStatusColor(property.status)}`}>
+                                    {mapPropertyStatus(property.status)}
+                                </p>
                             </div>
                         </div>
                     ))}
