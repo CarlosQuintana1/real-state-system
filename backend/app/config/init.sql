@@ -180,7 +180,7 @@ INSERT INTO properties (
 ('Estudio Compacto para Ejecutivos',
  'Estudio moderno y funcional, ideal para ejecutivos o estudiantes.',
  1100000, 'Guadalajara, Jalisco', 'department', 'available', 6,
- 'https://images.unsplash.com/photo-1586105251261-72a756497a12?w=500&h=350&fit=crop'),
+ 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
 
 ('Casa de Lujo con Jardín Zen',
  'Residencia premium con 3 recámaras, sala de cine y jardín zen.',
@@ -197,7 +197,7 @@ INSERT INTO properties (
 ('Residencia Ejecutiva con Oficina Integrada',
  'Casa moderna con espacio de oficina, 2 niveles y patio trasero.',
  3600000, 'Mérida, Yucatán', 'house', 'available', 8,
- 'https://images.unsplash.com/photo-1599423300743-3b04a39af1d6?w=500&h=350&fit=crop');
+ 'https://plus.unsplash.com/premium_photo-1676321688612-4451a8721435?q=80&w=2814&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 
 -- Century21 (propiedades de sellers 1, 2, 3)
 INSERT INTO company_properties (company_id, property_id)
