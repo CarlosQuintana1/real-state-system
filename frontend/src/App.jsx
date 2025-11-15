@@ -8,6 +8,7 @@ import Contact from "./pages/Contact.jsx";
 import Home from "./pages/Home.jsx";
 import Footer from "./components/Footer.tsx";
 import Sellers from "./pages/Sellers.jsx";
+import PropertyDetail from "./components/PropertyDetail.jsx";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
                       <Route path="/login" element={<Login/>}/>
                       <Route path="/signup" element={<Signup/>}/>
                       <Route path="/properties" element={<Properties/>}/>
+                      <Route path="/properties/:id" element={<PropertyDetail/>} />
                       <Route path="/services" element={<Services/>}/>
                       <Route path="/seller" element={<Sellers/>}/>
                       <Route path="/contact" element={<Contact/>}/>

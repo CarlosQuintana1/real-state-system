@@ -1,6 +1,6 @@
 // pages/Sellers.jsx
 import { useEffect, useState } from "react";
-import { getAllSellers } from "../services/sellerService";
+import { getAllSellers } from "../services/sellerService.js";
 
 export default function Sellers() {
     const [sellers, setSellers] = useState([]);

@@ -32,3 +32,8 @@ export async function getAllProperties({
         throw new Error(formatted);
     }
 }
+
+export async function getPropertyById(id){
+    const response = await api.get(`/properties/${id}`);
+    return response.data;
+}

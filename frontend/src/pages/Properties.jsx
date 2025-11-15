@@ -3,11 +3,14 @@ import {getAllProperties} from "../services/propertyService.js";
 import {mapPropertyStatus} from "../utils/statusMapper.js";
 import {getStatusColor} from "../utils/statusColor.js";
 import {mapTypeProperty} from "../utils/typeProperty.js";
+import {useNavigate} from "react-router-dom";
 
 export default function Properties() {
     const [properties, setProperties] = useState([]);
     const [loading,setLoading] = useState(true);
     const [error, setError] = useState("");
+
+    const navigate = useNavigate();
 
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
@@ -152,6 +155,7 @@ export default function Properties() {
                     {properties.map((property) => (
                         <div
                             key={property.id}
+                            onClick={() => navigate(`/properties/${property.id}`)}
                             className="bg-white rounded-lg overflow-hidden shadow-md border border-gray-200 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer"
                         >
                             <div className="relative h-56 overflow-hidden">
