@@ -1,5 +1,4 @@
 export default function Services() {
-    // Servicios mockeados
     const services = [
         {
             id: 1,
@@ -64,13 +63,13 @@ export default function Services() {
                         >
                             {/* Icono */}
                             <div className="flex justify-center mb-6">
-                                <div className="w-20 h-20 bg-[#D4AF37] bg-opacity-10 rounded-full flex items-center justify-center text-5xl">
+                                <div className="w-20 h-20 bg-[#beaf87] bg-opacity-10 rounded-full flex items-center justify-center text-5xl">
                                     {service.icon}
                                 </div>
                             </div>
 
                             {/* Contenido */}
-                            <h3 className="text-2xl font-bold text-[#D4AF37] text-center mb-4">
+                            <h3 className="text-2xl font-bold text-black text-center mb-4">
                                 {service.title}
                             </h3>
                             <p className="text-gray-600 text-center leading-relaxed">
@@ -101,7 +100,7 @@ export default function Services() {
                         Contáctanos hoy y descubre cómo podemos ayudarte a alcanzar tus objetivos inmobiliarios.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button className="bg-[#D4AF37] hover:bg-[#B8941F] text-white font-bold py-4 px-8 rounded-lg transition-colors duration-300 shadow-lg">
+                        <button className="bg-[#beaf87] hover:bg-[#B8941F] text-white font-bold py-4 px-8 rounded-lg transition-colors duration-300 shadow-lg">
                             Solicitar Asesoría
                         </button>
                         <button className="bg-transparent border-2 border-white hover:bg-white hover:text-[#252525] text-white font-bold py-4 px-8 rounded-lg transition-all duration-all duration-300">

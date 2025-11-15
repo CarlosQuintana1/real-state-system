@@ -16,7 +16,7 @@ export default function SuccessModal({ title, message, isOpen, onClose }) {
 
                 <button
                     onClick={onClose}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                    className="bg-[#beaf87] text-white px-4 py-2 rounded-md "
                 >
                     Cerrar
                 </button>

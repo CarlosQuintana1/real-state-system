@@ -2,6 +2,7 @@ import {useState, useEffect, useCallback} from "react";
 import {getAllProperties} from "../services/propertyService.js";
 import {mapPropertyStatus} from "../utils/statusMapper.js";
 import {getStatusColor} from "../utils/statusColor.js";
+import {mapTypeProperty} from "../utils/typeProperty.js";
 
 export default function Properties() {
     const [properties, setProperties] = useState([]);
@@ -75,7 +76,7 @@ export default function Properties() {
                       Propiedades Disponibles
                   </h1>
                   <p className="text-center mt-4 text-gray-300">
-                      Encuentra tu hogar ideal con Century 21
+                      ENCUENTRA TU HOGAR IDEAL CON CENTURY 21
                   </p>
               </div>
           </div>
@@ -167,15 +168,15 @@ export default function Properties() {
                                     alt={property.name}
                                     className="w-full h-full object-cover"
                                 />
-                                <div className="absolute top-4 right-4 bg-[#beaf87] text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                    {property.model_type}
+                                <div className="absolute top-4 right-4 bg-[#beaf87] text-white px-3 py-1 rounded-full text-sm font-light">
+                                    {mapTypeProperty(property.model_type)}
                                 </div>
                             </div>
                             <div className="p-4">
                                 <h3 className="text-xl font-bold text-[#252525] mb-2 line-clamp-1">{property.name}</h3>
                                 <p>${property.price.toLocaleString("es-MX")}</p>
                                 <p>{property.address}</p>
-                                <p className={`px-2 py-1 rounded-full font-extralight w-24 text-center ${getStatusColor(property.status)}`}>
+                                <p className={`px-2 py-1 rounded-full text-sm font-light w-24 text-center ${getStatusColor(property.status)}`}>
                                     {mapPropertyStatus(property.status)}
                                 </p>
                             </div>

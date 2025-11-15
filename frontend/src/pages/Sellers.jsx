@@ -51,7 +51,7 @@ export default function Sellers() {
                 {sellers.map((seller) => (
                     <div
                         key={seller.id}
-                        className="bg-white shadow-md rounded-xl p-5 border border-gray-100 hover:shadow-lg transition"
+                        className="bg-white shadow-md rounded-xl p-5 border border-[#beaf87] hover:shadow-lg transition"
                     >
                         <h2 className="text-xl font-semibold text-gray-800 mb-2">
                             {seller.name}
@@ -60,7 +60,7 @@ export default function Sellers() {
                         <p className="text-gray-600 mb-4">{seller.email}</p>
 
                         <div className="mt-4 flex justify-end">
-                            <button className="px-4 py-2 bg-[#beaf87] text-black text-sm rounded-lg">
+                            <button className="px-4 py-2 bg-black text-white font-bold text-sm rounded-lg">
                                 Contactar
                             </button>
                         </div>

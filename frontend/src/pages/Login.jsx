@@ -76,7 +76,6 @@ export default function Login() {
                     Registrarse
                 </button>
             </div>
-
             <SuccessModal
                 isOpen={modalInfo.isOpen}
                 title={modalInfo.title}
