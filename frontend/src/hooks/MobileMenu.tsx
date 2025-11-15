@@ -118,13 +118,13 @@ export default function MobileMenu() {
                                         <>
                                             <button
                                                 onClick={() => handleLoginClick(onClose)}
-                                                className="w-3/4 border-2 border-white hover:bg-white hover:text-black p-2 text-sm rounded-md"
+                                                className="w-3/4 border-2 border-white hover:bg-white hover:text-black p-2 text-sm rounded-md cursor-pointer"
                                             >
                                                 Iniciar Sesión
                                             </button>
                                             <button
                                                 onClick={() => handleSignupClick(onClose)}
-                                                className="w-3/4 bg-white text-black text-sm p-2 rounded-md"
+                                                className="w-3/4 bg-white text-black text-sm p-2 rounded-md cursor-pointer"
                                             >
                                                 Registrarse
                                             </button>
@@ -132,7 +132,7 @@ export default function MobileMenu() {
                                     ) : (
                                         <button
                                             onClick={() => handleLogoutClick(onClose)}
-                                            className="w-3/4 bg-red-500 text-white text-sm p-2 rounded-md"
+                                            className="w-3/4 bg-red-500 text-white text-sm p-2 rounded-md cursor-pointer"
                                         >
                                             Cerrar Sesión
                                         </button>

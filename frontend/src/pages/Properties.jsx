@@ -80,12 +80,10 @@ export default function Properties() {
                   </p>
               </div>
           </div>
-          {/* Panel de filtros */}
           <div className="container mx-auto px-4 py-8">
               <div className="bg-white rounded-lg shadow-lg p-6 mb-8 border-t-4 border-[#beaf87]">
                   <h2 className="text-2xl font-bold text-[#252525] mb-6">Filtrar Propiedades</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                      {/* Filtro por tipo */}
                       <div>
                           <label className="block text-sm font-semibold text-gray-700 mb-2">
                               Tipo de Propiedad
@@ -101,7 +99,6 @@ export default function Properties() {
                               <option value="department">Departamento</option>
                           </select>
                       </div>
-                      {/* Filtro precio mínimo */}
                       <div>
                           <label className="block text-sm font-semibold text-gray-700 mb-2">
                               Precio Mínimo
@@ -115,8 +112,6 @@ export default function Properties() {
                               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#beaf87] focus:border-transparent"
                           />
                       </div>
-
-                      {/* Filtro precio máximo */}
                       <div>
                           <label className="block text-sm font-semibold text-gray-700 mb-2">
                               Precio Máximo
@@ -130,8 +125,6 @@ export default function Properties() {
                               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#beaf87] focus:border-transparent"
                           />
                       </div>
-
-                      {/* Filtro por ubicación */}
                       <div>
                           <label className="block text-sm font-semibold text-gray-700 mb-2">
                               Ubicación
@@ -146,7 +139,6 @@ export default function Properties() {
                           />
                       </div>
                   </div>
-                  {/* Botón filtrar */}
                   <div className="mt-6 flex justify-end">
                       <button
                           onClick={applyFilters}
@@ -156,7 +148,7 @@ export default function Properties() {
                       </button>
                   </div>
               </div>
-              <div className="grid grid-cols-3 gap-6 p-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
                     {properties.map((property) => (
                         <div
                             key={property.id}

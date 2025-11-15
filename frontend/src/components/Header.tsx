@@ -65,7 +65,7 @@ export default function Header(){
                     )}
                 </div>
             </div>
-            <div className="flex md:hidden justify-end pr-4">
+            <div className="flex items-center md:hidden justify-end pr-4">
                 <MobileMenu/>
             </div>
         </header>

@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 export default function Services() {
     const services = [
         {
@@ -101,10 +103,10 @@ export default function Services() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <button className="bg-[#beaf87] hover:bg-[#B8941F] text-white font-bold py-4 px-8 rounded-lg transition-colors duration-300 shadow-lg">
-                            Solicitar Asesoría
+                            <Link to="/seller">Solicitar Asesoria</Link>
                         </button>
                         <button className="bg-transparent border-2 border-white hover:bg-white hover:text-[#252525] text-white font-bold py-4 px-8 rounded-lg transition-all duration-all duration-300">
-                            Ver Propiedades
+                            <Link to="/properties">Ver Propiedades</Link>
                         </button>
                     </div>
                 </div>

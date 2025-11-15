@@ -47,7 +47,7 @@ export default function Sellers() {
                 Elige a tu vendedor favorito que te acompañara en esta Nueva Experiencia
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {sellers.map((seller) => (
                     <div
                         key={seller.id}
