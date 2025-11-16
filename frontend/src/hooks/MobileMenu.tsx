@@ -1,4 +1,5 @@
 import {
+    Avatar,
     Button,
     Drawer,
     DrawerBody,
@@ -10,14 +11,19 @@ import {
 } from "@heroui/react";
 import { HiOutlineMenu } from "react-icons/hi";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import {forceScrollTop} from "../utils/scrollToTop";
+import {getUserFromToken} from "../utils/getUserFromToken";
 
 export default function MobileMenu() {
     const [active, setActive] = useState("Home");
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const { isAuthenticated, logout } = useAuth();
     const navigate = useNavigate();
+
+    const user = getUserFromToken();
+    const user_id = user?.id;
 
     const handleLoginClick = (onClose: () => void) => {
         navigate("/login");
@@ -128,14 +134,36 @@ export default function MobileMenu() {
                                             >
                                                 Registrarse
                                             </button>
-                                        </>
-                                    ) : (
-                                        <button
-                                            onClick={() => handleLogoutClick(onClose)}
-                                            className="w-3/4 bg-red-500 text-white text-sm p-2 rounded-md cursor-pointer"
-                                        >
-                                            Cerrar Sesión
-                                        </button>
+                                        </> ) : (
+                                            <>
+                                                <div className="flex flex-row gap-4 items-center" draggable={false} onClick={onClose}>
+                                                <Link to={`/user/${user_id}`} onClick={forceScrollTop}
+                                                      className="p-2 bg-white  text-black text-lg rounded-lg cursor-pointer"
+                                                >
+                                                    <div className="flex flex-row gap-2 items-center" draggable={false}>
+                                                    <Avatar showFallback className="p-2"/>
+                                                        <p>Ver Perfil</p>
+                                                    </div>
+                                                </Link>
+                                                <button onClick={logout} type="button" className="flex flex-row gap-2 items-center text-white hover:text-red-400 border-1 text-lg p-2 rounded-lg cursor-pointer">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className="h-5 w-5"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                        strokeWidth={2}
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"
+                                                        />
+                                                    </svg>
+                                                    <p>Cerrar Sesión</p>
+                                                </button>
+                                                </div>
+                                            </>
                                     )}
                                 </div>
                             </DrawerBody>
