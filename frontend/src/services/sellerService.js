@@ -11,6 +11,5 @@ export async function getAllSellers() {
 
 export async function getUser(user_id) {
     const response = await api.get(`/user/${user_id}`);
-    console.log(response.data);
     return response.data;
 }

@@ -3,6 +3,7 @@ import {useAuth} from "../hooks/useAuth.js";
 import MobileMenu from "../hooks/MobileMenu";
 import {forceScrollTop} from "../utils/scrollToTop";
 import {getUserFromToken} from "../utils/getUserFromToken";
+import {Avatar} from "@heroui/react";
 
 export default function Header(){
     const navigate = useNavigate();
@@ -50,12 +51,12 @@ export default function Header(){
                             </button>
                         </> ) : (
                             <>
-                                <button className="bg-white text-black border-2 p-2 text-sm rounded-md cursor-pointer">
-                                    <Link to={`/user/${user_id}`} onClick={forceScrollTop}>
-                                        Perfil
-                                    </Link>
-                                </button>
-                                <button onClick={logout} type="button" className="bg-red-500 text-white text-sm p-2 rounded-md cursor-pointer">
+                                <Link to={`/user/${user_id}`} onClick={forceScrollTop}
+                                    className="  border-1 p-2.5 bg-white  text-black text-sm rounded-full cursor-pointer"
+                                >
+                                    <Avatar showFallback className="p-2"/>
+                                </Link>
+                                <button onClick={logout} type="button" className=" text-white hover:text-red-400 border-1 text-sm p-2 rounded-full cursor-pointer">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         className="h-5 w-5"
