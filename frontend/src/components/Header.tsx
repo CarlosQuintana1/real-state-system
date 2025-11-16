@@ -2,10 +2,14 @@ import {Link, useNavigate} from "react-router-dom";
 import {useAuth} from "../hooks/useAuth.js";
 import MobileMenu from "../hooks/MobileMenu";
 import {forceScrollTop} from "../utils/scrollToTop";
+import {getUserFromToken} from "../utils/getUserFromToken";
 
 export default function Header(){
     const navigate = useNavigate();
     const {isAuthenticated, logout } = useAuth();
+
+    const user = getUserFromToken();
+    const user_id = user?.id;
 
     const handleLoginClick = () => {
         navigate("/login");
@@ -47,7 +51,7 @@ export default function Header(){
                         </> ) : (
                             <>
                                 <button className="bg-white text-black border-2 p-2 text-sm rounded-md cursor-pointer">
-                                    <Link to="/profile" onClick={forceScrollTop}>
+                                    <Link to={`/user/${user_id}`} onClick={forceScrollTop}>
                                         Perfil
                                     </Link>
                                 </button>

@@ -4,13 +4,13 @@ import { useParams } from "react-router-dom";
 import {getUser} from "../services/sellerService.js";
 
 export default function ProfilePage() {
-    const { id } = useParams();
+    const { user_id } = useParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!id) {
+        if (!user_id) {
             setError("ID no encontrado en la URL");
             setLoading(false);
             return;
@@ -18,7 +18,7 @@ export default function ProfilePage() {
 
         async function fetchUser() {
             try {
-                const data = await getUser(id);
+                const data = await getUser(user_id);
                 setUser(data);
             } catch (err) {
                 console.error(err);
@@ -28,8 +28,8 @@ export default function ProfilePage() {
             }
         }
 
-        fetchUser();
-    }, [id]);
+        fetchUser().then();
+    }, [user_id]);
 
     if (loading) return <p>Cargando perfil...</p>;
     if (error) return <p>{error}</p>;

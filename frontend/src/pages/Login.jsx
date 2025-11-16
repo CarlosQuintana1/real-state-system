@@ -1,4 +1,4 @@
-import {useState, useEffect } from "react";
+import {useState } from "react";
 import {login} from "../services/authService.js";
 import Cookies from "js-cookie";
 import {useNavigate} from "react-router-dom";
@@ -10,16 +10,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
-
     const {modalInfo, showSuccess, closeModal} = useSuccessModal();
-
-
-    useEffect(() => {
-        const token = Cookies.get("access_token");
-        if (token) {
-            navigate("/");
-        }
-    }, [navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,10 +24,12 @@ export default function Login() {
                 "Has iniciado sesión exitosamente"
             );
 
-            setTimeout(() => navigate("/"), 2500);
+            await new Promise((resolve)=> setTimeout(resolve, 50));
+
+            setTimeout(()=> navigate("/"), 2500)
         } catch (err) {
             console.error("Error de Login: ", err);
-            setError(err.detail);
+            setError(err.detail || "Error de inicio de sesión");
         }
     }
 
